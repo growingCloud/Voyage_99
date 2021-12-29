@@ -33,6 +33,10 @@ for tr in trs :
     # tr 까지 찾아놓은 곳에서 또 세부적으로 찾는 과정
     # print(a_tag.text) -> 웹 페이지마다 양식이 달라서, 구분선 때문에 NonType을 text로 가져올 수 없음
 
+
+
     if a_tag is not None :
         title = a_tag.text
-        print(title)    # NonType을 제외하고 제목 텍스트만 가져옴
+        rank = tr.select_one('td:nth-child(1) > img')['alt']
+        star = tr.select_one('td.point').text
+        print(rank, title, star)    # NonType을 제외하고 제목 텍스트만 가져옴
