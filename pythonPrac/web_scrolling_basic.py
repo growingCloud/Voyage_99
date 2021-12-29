@@ -39,4 +39,4 @@ for tr in trs :
         title = a_tag.text
         rank = tr.select_one('td:nth-child(1) > img')['alt']
         star = tr.select_one('td.point').text
-        print(rank, title, star)    # NonType을 제외하고 제목 텍스트만 가져옴
+        print(rank, title, star)    # NonType을 제외하고 필요한 자료만 가져옴
