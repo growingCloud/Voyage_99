@@ -15,7 +15,7 @@ def home():
 
 @app.route('/memo', methods=['GET'])
 def listing():
-    articles = list(db.articles.find({'age':21},{'_id':False}))
+    articles = list(db.articles.find({},{'_id':False}))
     return jsonify({'all_articles':articles})
 
 ## API 역할을 하는 부분

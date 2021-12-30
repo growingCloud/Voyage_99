@@ -5,6 +5,7 @@
       <excludeFolder url="file://$MODULE_DIR$/projects/prac/venv" />
       <excludeFolder url="file://$MODULE_DIR$/projects/bookreview/venv" />
       <excludeFolder url="file://$MODULE_DIR$/projects/alonememo/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/projects/moviestar/venv" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

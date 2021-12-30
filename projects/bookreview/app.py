@@ -21,7 +21,9 @@ def write_review():
     author_receive = request.form['author_give']
     review_receive = request.form['review_give']
 
-    doc = {'title': title_receive, 'author': author_receive, 'review': review_receive}
+    doc = {'title': title_receive,
+           'author': author_receive,
+           'review': review_receive}
     db.bookreview.insert_one(doc)
 
     return jsonify({'msg': '저장 되었습니다.'})
