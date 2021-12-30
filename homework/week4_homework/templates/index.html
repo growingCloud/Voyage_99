@@ -22,9 +22,9 @@
 
     <title>구름 건강원</title>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
 	      ratechange();
-          listing();})
+          showOrder();});
 
         function ratechange() {
             $('#rates').empty()
@@ -41,47 +41,43 @@
             })
         }
 
-        function listing() {
+        function makeOrder() {
+            let name = $('#name').val()
+            let count = $('#count').val()
+            let address = $('#address').val()
+            let phone = $('#phone').val()
+
+            $.ajax({
+                type: "POST",
+                url: "/order",
+                data: {name_give:name, count_give:count, address_give:address, phone_give:phone},
+                success: function (response) {
+                    alert(response["msg"]);
+                    window.location.reload();
+                }
+            })
+        }
+
+        function showOrder() {
             $.ajax({
                 type: "GET",
                 url: "/order",
                 data: {},
                 success: function (response) {
-                    if (response["result"] == "success") {
-                        let orders = response['orders'];
-                        for (let i = 0; i < orders.length; i++) {
-                            let name = orders[i]['name'];
-                            let count = orders[i]['count'];
-                            let address = orders[i]['address'];
-                            let phone = orders[i]['phone'];
+                    let orders = response['all_orders']
+                    for (let i = 0; i < orders.length; i++) {
+                        let name = orders[i]['name']
+                        let count = orders[i]['count']
+                        let address = orders[i]['address']
+                        let phone = orders[i]['phone']
 
-                            let temp_html = `<tr>
-                                                <th scope="row">${name}</th>
-                                                <td>${count}</td>
-                                                <td>${address}</td>
-                                                <td>${phone}</td>
-                                            </tr>`
-                            $('#orders-box').append(temp_html)
-                        }
-                    }
-                }
-            })
-        }
-
-        function order() {
-            let name = $('#order-name').val();
-            let count = $('#order-count').val();
-            let address = $('#order-address').val();
-            let phone = $('#order-phone').val();
-
-            $.ajax({
-                type: "POST",
-                url: "/order",
-                data: {name_give: name, count_give: count, address_give: address, phone_give: phone},
-                success: function (response) {
-                    if (response["result"] == "success") {
-                        alert(response["msg"]);
-                        window.location.reload();
+                        let temp_html = `<tr>
+                                            <td>${name}</td>
+                                            <td>${count}</td>
+                                            <td>${address}</td>
+                                            <td>${phone}</td>
+                                        </tr>`
+                        $('#orders-box').append(temp_html)
                     }
                 }
             })
@@ -119,7 +115,8 @@
         }
 
         .mybtn {
-        margin: 30px auto;
+        margin: 30px auto 30px auto;
+        padding: 20px;
         display: block;
         }
     </style>
@@ -180,23 +177,31 @@
         </div>
     </div>
 
-        <button type="button" class="btn btn-primary mybtn">주문하기</button>
-        <button type="button" class="btn btn-success mybtn">[N] 네이버 페이로 주문하기</button>
+        <div class = "mybtn">
+        <button onclick="makeOrder()" type="button" class="btn btn-primary">주문하기</button>
+        <button onclick="makeOrder()" type="button" class="btn btn-success">[N] 네이버 페이로 주문하기</button>
+        </div>
 
-    <div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">이름</th>
-                <th scope="col">수량</th>
-                <th scope="col">주소</th>
-                <th scope="col">전화번호</th>
-            </tr>
-            </thead>
-            <tbody id="orders-box">
-            </tbody>
-        </table>
-    </div>
+        <div class="reviews">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">주문자 이름</th>
+                    <th scope="col">주문 수량</th>
+                    <th scope="col">주소</th>
+                    <th scope="col">전화번호</th>
+                </tr>
+                </thead>
+                <tbody id="orders-box">
+                <tr>
+                    <td>김주문</td>
+                    <td>100</td>
+                    <td>서울시 부자동</td>
+                    <td>010-7777-7777</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 </body>
 
 </html>

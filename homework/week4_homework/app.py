@@ -5,7 +5,7 @@ app = Flask(__name__)
 from pymongo import MongoClient
 
 client = MongoClient('localhost', 27017)
-db = client.dbhomework
+db = client.dbsparta
 
 
 ## HTML 화면 보여주기
@@ -30,14 +30,14 @@ def save_order():
     }
     db.orders.insert_one(doc)
 
-    return jsonify({'result': 'success', 'msg': '주문 완료!'})
+    return jsonify({'msg': '주문 완료!'})
 
 
 # 주문 목록보기(Read) API
 @app.route('/order', methods=['GET'])
 def view_orders():
     orders = list(db.orders.find({}, {'_id': False}))
-    return jsonify({'result': 'success', 'orders': orders})
+    return jsonify({'all_orders': orders})
 
 
 if __name__ == '__main__':
