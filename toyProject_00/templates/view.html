@@ -1,0 +1,13 @@
+<html>
+    {{result.title}}<br>
+    {{result.name}}<br>
+    {{result.pubdate|format_datetime}}<br>
+    {{result.view}}<br>
+    {{result.contents}}<br>
+
+    <a href="{{url_for('board_lists', page=page, search=search, keyword=keyword)}}">글 목록</a>
+
+        {% if session["id"] == result.writer_id %}
+        <a href="{{url_for('board_delete', idx=result.id)}}">글 삭제</a>
+        <a href="{{url_for('board_edit', idx=result.id)}}">글 수정</a>
+</html>
