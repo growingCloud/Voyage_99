@@ -143,21 +143,23 @@ def board_lists():
     datas = board.find(query).skip((page-1) * limit).limit(limit)
 
     # 페이지네이션 관련 수식
-    total_count = board.find(query).count()                 # 게시물의 총 갯수
-    last_page_num = math.ceil(total_count / limit)          # 마지막 페이지의 수, 게시물이 하나라도 있으면 페이지가 존재해야 하므로 소수점이 생기면 무조건 올림!
-    block_size = 5                                          # 페이지 블럭을 5개씩 지정
-    block_num = int((page - 1) / block_size)                # 현재 게시글 블럭의 위치
-    block_start = int((block_size * block_num) + 1)         # 블럭의 시작 위치
-    block_end = math.ceil((block_start + block_size - 1))   # 블럭의 끝 위치
+    # total = list(board.find(query))
+    # total_count = total.len()                               # 게시물의 총 갯수
+    # last_page_num = math.ceil(total_count / limit)          # 마지막 페이지의 수, 게시물이 하나라도 있으면 페이지가 존재해야 하므로 소수점이 생기면 무조건 올림!
+    # block_size = 5                                          # 페이지 블럭을 5개씩 지정
+    # block_num = int((page - 1) / block_size)                # 현재 게시글 블럭의 위치
+    # block_start = int((block_size * block_num) + 1)         # 블럭의 시작 위치
+    # block_end = math.ceil((block_start + block_size - 1))   # 블럭의 끝 위치
+
 
     return render_template(
         'list.html',
         datas = datas,
         limit = limit,
         page = page,
-        block_start = block_start,
-        block_end = block_end,
-        last_page_num = last_page_num,
+        # block_start = block_start,
+        # block_end = block_end,
+        # last_page_num = last_page_num,
         search = search,
         keyword = keyword)
 
@@ -213,13 +215,13 @@ def board_delete(idx):
 @app.route('/join', methods=['GET', 'POST'])
 def member_join():
     if request.method == "POST" :
-        name = request.form.get('name')
-        email = request.form.get('email')
-        pass1 = request.form.get('pass1')
-        pass2 = request.form.get('pass2')
+        name = request.form.get("name", type=str)
+        email = request.form.get("email", type=str)
+        pass1 = request.form.get("pass1", type=str)
+        pass2 = request.form.get("pass2", type=str)
 
         # 가입 시 빈칸이 있을 경우
-        if name is None or email is None or pass1 is None or pass2 is None :
+        if name == "" or email == "" or pass1 == "" or pass2 == "" :
             flash("입력되지 않은 값이 있습니다.")
             return render_template('join.html')
 
@@ -230,7 +232,8 @@ def member_join():
 
         # 이메일(아이디) 중복 검사
         members = mongo.db.members
-        count = members.find({"email": email}).count()
+        id_check = list(members.find({"email": email}))
+        count = id_check.len()
         if count > 0:
             flash("중복된 이메일 주소가 있습니다.")
             return render_template('join.html')
@@ -263,7 +266,7 @@ def member_login():
             return render_template("login.html")
     else:
         email = request.form.get("email")
-        password = request.form.get("pass")
+        password = request.form.get("pass1")
         next_url = request.form.get("next_url", type=str)
 
         members = mongo.db.members
@@ -273,7 +276,7 @@ def member_login():
             flash("회원정보가 없습니다.")
             return redirect(url_for("member_join"))
         else:
-            if data.get("pass") == password:
+            if data.get("pass1") == password:
                 session["email"] = email
                 session["name"] = data.get("name")
                 session["id"] = str(data.get("_id"))
@@ -288,4 +291,4 @@ def member_login():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5007, debug=True)
+    app.run('0.0.0.0', port=5003, debug=True)
