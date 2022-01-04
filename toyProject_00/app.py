@@ -73,25 +73,25 @@ def board_write():
 
         flash("정상적으로 작성 되었습니다.")
         # SQL의 primary key와 같은 고유 번호(_id) 출력
-        return redirect(url_for("board_view", idx=idx.inserted_id))
+        return redirect(url_for('board_view', idx=idx.inserted_id))
     else:
         # /write 경로로 들어오면 GET으로 받아 입력창 보여줌
         return render_template("write.html", name=session["name"])
 
 
 # 게시글 상세 페이지 (Read)
-@app.route('/view/<idx>', methods=['GET'])
+@app.route('/view', methods=['GET'])
 @login_required
-def board_view(idx):
+def board_view():
     idx = request.args.get("idx")
-    page = request.args.get("page", 1, type=int)
-    search = request.args.get("search", -1, type=int)
-    keyword = request.args.get("keyword", "", type=str)
+    # page = request.args.get("page", 1, type=int)
+    # search = request.args.get("search", -1, type=int)
+    # keyword = request.args.get("keyword", "", type=str)
 
     if idx is not None:
         board = mongo.db.board
-        # data = board.find_one({"_id": ObjectId(idx)})
-        data = board.find_one_and_update({"_id": ObjectId(idx)}, {"$inc": {"view": 1}}, return_document=True)
+        data = board.find_one({"_id": ObjectId(idx)})
+        # data = board.find_one_and_update({"_id": ObjectId(idx)}, {"$inc": {"view": 1}}, return_document=True)
         if data is not None:
             result = {
                 "id": data.get("_id"),
@@ -102,7 +102,8 @@ def board_view(idx):
                 "writer_id": data.get("writer_id", "")
             }
 
-            return render_template("view.html", result=result, page=page, search=search, keyword=keyword)
+            # return render_template("view.html", result=result, page=page, search=search, keyword=keyword)
+            return render_template("view.html", result=result)
     return abort(404)  # 맞는 페이지가 없을때 404나 400 페이지 내보내기
 
 
@@ -111,7 +112,7 @@ def board_view(idx):
 def board_lists():
     # 페이지네이션 기능 추가
     page = request.args.get("page", 1, type=int)
-    limit = request.args.get("limit", 10, type=int)
+    limit = request.args.get("limit", 100, type=int)
 
     search = request.args.get("search", -1, type=int)
     keyword = request.args.get("keyword", "", type=str)
@@ -143,14 +144,12 @@ def board_lists():
     datas = board.find(query).skip((page-1) * limit).limit(limit)
 
     # 페이지네이션 관련 수식
-    # total = list(board.find(query))
-    # total_count = total.len()                               # 게시물의 총 갯수
+    # total_count = board.find(query).countDocuments()        # 게시물의 총 갯수
     # last_page_num = math.ceil(total_count / limit)          # 마지막 페이지의 수, 게시물이 하나라도 있으면 페이지가 존재해야 하므로 소수점이 생기면 무조건 올림!
     # block_size = 5                                          # 페이지 블럭을 5개씩 지정
     # block_num = int((page - 1) / block_size)                # 현재 게시글 블럭의 위치
     # block_start = int((block_size * block_num) + 1)         # 블럭의 시작 위치
     # block_end = math.ceil((block_start + block_size - 1))   # 블럭의 끝 위치
-
 
     return render_template(
         'list.html',
@@ -164,20 +163,22 @@ def board_lists():
         keyword = keyword)
 
 
-@app.route("/edit/<idx>", methods=["GET", "POST"])
-def board_edit(idx):
+@app.route("/edit", methods=["GET", "POST"])
+def board_edit():
+    idx = request.args.get("idx")
+
     if request.method == "GET":
         board = mongo.db.board
         data = board.find_one({"_id": ObjectId(idx)})
         if data is None:
             flash("해당 게시물이 존재하지 않습니다.")
-            return redirect(url_for("lists"))
+            return redirect(url_for("board_lists"))
         else:
             if session.get("id") == data.get("writer_id"):
                 return render_template("edit.html", data=data)
             else:
                 flash("글 수정 권한이 없습니다.")
-                return redirect(url_for("lists"))
+                return redirect(url_for("board_lists"))
     else:
         title = request.form.get("title")
         contents = request.form.get("contents")
@@ -199,8 +200,9 @@ def board_edit(idx):
             return redirect(url_for("lists"))
 
 
-@app.route("/delete/<idx>")
-def board_delete(idx):
+@app.route("/delete")
+def board_delete():
+    idx = request.args.get("idx")
     board = mongo.db.board
     data = board.find_one({"_id": ObjectId(idx)})
     if data.get("writer_id") == session.get("id"):
@@ -208,7 +210,7 @@ def board_delete(idx):
         flash("삭제 되었습니다.")
     else:
         flash("글 삭제 권한이 없습니다.")
-    return redirect(url_for("lists"))
+    return redirect(url_for("board_lists"))
 
 
 # 회원가입 페이지 (Join)
@@ -232,11 +234,10 @@ def member_join():
 
         # 이메일(아이디) 중복 검사
         members = mongo.db.members
-        id_check = list(members.find({"email": email}))
-        count = id_check.len()
-        if count > 0:
-            flash("중복된 이메일 주소가 있습니다.")
-            return render_template('join.html')
+        # count = members.find({"email": email}).countDocuments()
+        # if count > 0:
+        #     flash("중복된 이메일 주소가 있습니다.")
+        #     return render_template('join.html')
 
         current_time = round(datetime.utcnow().timestamp() * 1000)
 
@@ -291,4 +292,4 @@ def member_login():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5003, debug=True)
+    app.run('0.0.0.0', port=5006, debug=True)

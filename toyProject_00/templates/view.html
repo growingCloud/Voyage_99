@@ -1,13 +1,14 @@
 <html>
-    {{result.title}}<br>
-    {{result.name}}<br>
-    {{result.pubdate|format_datetime}}<br>
-    {{result.view}}<br>
-    {{result.contents}}<br>
+    글제목: {{result.title}}<br><br>
+    작성자: {{result.name}}<br>
+    작성일: {{result.pubdate|format_datetime}}<br>
+    조회수: {{result.view}}<br><br>
+    글내용: {{result.contents}}<br><br>
 
     <a href="{{url_for('board_lists', page=page, search=search, keyword=keyword)}}">글 목록</a>
 
-        {% if session["id"] == result.writer_id %}
-        <a href="{{url_for('board_delete', idx=result.id)}}">글 삭제</a>
-        <a href="{{url_for('board_edit', idx=result.id)}}">글 수정</a>
+{% if session["id"] == result.writer_id %}
+<a href="{{url_for('board_delete', idx=result.id)}}">글삭제</a>
+<a href="{{url_for('board_edit', idx=result.id)}}">글수정</a>
+{% endif %}
 </html>
