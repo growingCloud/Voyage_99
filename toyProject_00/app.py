@@ -58,6 +58,13 @@ def board_write():
 
         current_utc_time = round(datetime.utcnow().timestamp() * 1000)
 
+        t_check = title.split()
+        c_check = contents.split()
+
+        if len(t_check) == 0 or len(c_check) == 0 :
+            flash("제목 또는 내용이 입력되지 않았습니다.")
+            return render_template('write.html')
+
         board = mongo.db.board
 
         post = {
