@@ -1,11 +1,11 @@
 import mongo as mongo
 from flask_pymongo import PyMongo
-from flask import Flask, request, render_template, abort, redirect, url_for, flash, session
+from flask import Flask, request, render_template, abort, redirect, url_for, flash, session, jsonify
 from datetime import datetime, timedelta
 from bson.objectid import ObjectId
-import time
-import math
 from functools import wraps
+import time
+
 
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/toy_practice"
@@ -42,6 +42,23 @@ def login_required(f):
     return decorated_function
 
 
+# 조회수 카운팅 기능
+@app.route('/viewcount', methods=['POST'])
+def view_count():
+    view_id= request.get_json()['view_name']
+    print(view_id);
+
+    board = mongo.db.board
+    check_id = board.find_one({"_id": ObjectId(view_id)})
+    count = check_id['view'] + 1
+    board.update_one({"_id": ObjectId(view_id)}, {
+        "$set": {
+            "view": count,
+        }
+    })
+    return jsonify({'msg':'성공'})
+
+
 # 게시글 작성 (Create)
 @app.route('/write', methods=['GET', 'POST'])
 # 회원에게만 글 작성 권한 부여
@@ -58,13 +75,6 @@ def board_write():
 
         current_utc_time = round(datetime.utcnow().timestamp() * 1000)
 
-        t_check = title.split()
-        c_check = contents.split()
-
-        if len(t_check) == 0 or len(c_check) == 0 :
-            flash("제목 또는 내용이 입력되지 않았습니다.")
-            return render_template('write.html')
-
         board = mongo.db.board
 
         post = {
@@ -75,6 +85,8 @@ def board_write():
             "view": 0,
             "pubdate": current_utc_time,
         }
+
+
         print(post)
         idx = board.insert_one(post)
 
@@ -108,7 +120,6 @@ def board_view():
                 "pubdate": data.get("pubdate"),
                 "writer_id": data.get("writer_id", "")
             }
-
             # return render_template("view.html", result=result, page=page, search=search, keyword=keyword)
             return render_template("view.html", result=result)
     return abort(404)  # 맞는 페이지가 없을때 404나 400 페이지 내보내기
@@ -204,7 +215,7 @@ def board_edit():
             return redirect(url_for("board_view", idx=idx))
         else:
             flash("글 수정 권한이 없습니다.")
-            return redirect(url_for("lists"))
+            return redirect(url_for("board_lists"))
 
 
 @app.route("/delete")
@@ -299,4 +310,4 @@ def member_login():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5007, debug=True)
+    app.run('0.0.0.0', port=5003, debug=True)

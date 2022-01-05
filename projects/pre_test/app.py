@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from pymongo import MongoClient
-client = MongoClient('localhost', 27017)
+client = MongoClient('mongodb://test:test@localhost', 27017)
 db = client.dbsparta
 
 ## HTML을 주는 부분
@@ -15,16 +15,14 @@ def home():
 
 @app.route('/memo', methods=['GET'])
 def listing():
-    articles = list(db.articles.find({},{'_id':False}))
-    return jsonify({'all_articles':articles})
+    articles = list(db.articles.find({}, {'_id': False}))
+    return jsonify({'all_articles': articles})
 
 ## API 역할을 하는 부분
 @app.route('/memo', methods=['POST'])
 def saving():
     url_receive = request.form['url_give']
     comment_receive = request.form['comment_give']
-
-    url = 'https://movie.naver.com/movie/bi/mi/basic.nhn?code=171539'
 
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
@@ -37,24 +35,26 @@ def saving():
     desc = soup.select_one('meta[property="og:description"]')['content']
 
     doc = {
-        'title' : title,
-        'image' : image,
-        'desc' : desc,
-        'url' : url_receive,
-        'comment' : comment_receive
+        'title':title,
+        'image':image,
+        'desc':desc,
+        'url':url_receive,
+        'comment':comment_receive
     }
 
     db.articles.insert_one(doc)
+    print(title)
 
     return jsonify({'msg':'저장이 완료 되었습니다.'})
 
 
 @app.route('/delete', methods=['POST'])
-def delete_star():
-    name_receive = request.form['name_give']
-    db.articles.delete_one({'name': name_receive})
+def delete_article():
+    title = request.form['title']
+    print(title)
+    db.articles.delete_one({'title': title})
     return jsonify({'msg': '삭제 완료 되었습니다!'})
 
 
 if __name__ == '__main__':
-   app.run('0.0.0.0',port=5002,debug=True)
+   app.run('0.0.0.0',port=5001,debug=True)

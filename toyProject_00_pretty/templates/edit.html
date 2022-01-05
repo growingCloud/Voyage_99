@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <link rel="shortcut icon" type="image/x-icon" href="https://hanghae99.spartacodingclub.kr/static/images/favicon.ico">
+        <link rel="stylesheet" href="../static/reset.css">
+        <link rel="stylesheet" href="../static/edit.css">
+        <title>항해99 항해사들의 결심일지</title>
+    </head>
+    <body>
+
+
+        <section class="top">
+            <img src='../static/킹갓구름님과킹갓감자.png' alt="">
+        </section>
+        <section class="bottom">
+            <article>
+                <form name="form" method="POST" id='edit_form'  action="/edit?idx={{data._id}}">
+                    <ul>
+                        <li>
+                            <p>작성자</p>
+                            <input type="text" id='name' name="name" value="{{session.get('name')}}" readonly>
+                        </li>
+                        <li>
+                            <p>제목</p>
+                            <input type="text" name="title" value={{data.title}}>
+                        </li>
+                        <li>
+                            <p>내용</p>
+                            <textarea name="contents">{{data.contents}}</textarea>
+                        </li>
+                        <li>
+                            <label class="btn" for="edit">수정하기</label>
+                            <input type="submit" id='edit'  value="수정하기" style='display:none;'>
+                        </li>
+                    </ul>
+                </form>
+            </article>
+        </section>
+        <script>
+            const formWrite = document.querySelector('#edit_form');
+                formWrite.addEventListener('submit',(e)=>{
+            const title = document.querySelector('input[name=title]').value;
+            const desc = document.querySelector('textarea[name=contents]').value;
+
+            if(title =='' || desc==''){
+                alert('빈칸을 입력해 주세요!')
+                e.preventDefault();
+                return false;
+            }
+        })
+        </script>
+    </body>
+</html>
