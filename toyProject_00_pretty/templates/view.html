@@ -38,13 +38,12 @@
             </article>
         </section>
 
-
-
+<!-- 댓글 기능 추가 : 테이블 태그 미안 ... -->
 <form id="commentForm" name="commentForm" action="{{url_for('comment_write')}}" method="POST">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <input type="hidden" name="root_idx" value="{{result.id}}">
     <div>
-        <span><strong>댓글</strong></span> <span id="cCnt">{{comments.count()}}</span>
+        <span><strong>댓글</strong></span> <span id="cCnt">{{comments|length}}</span>
         <table class="table">
             <tr>
                 <td>
@@ -59,7 +58,7 @@
     </div>
 </form>
 
-{% if comments.count() > 0 %}
+{% if comments|length > 0 %}
     {% for c in comments %}
         <div>
             <table class="table">
@@ -72,8 +71,7 @@
         </div>
     {% endfor %}
 {% endif %}
-
-
+<!-- 댓글 기능 추가 끝 -->
 
     </body>
 </html>

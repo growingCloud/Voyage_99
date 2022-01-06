@@ -123,8 +123,12 @@ def board_view():
                 "pubdate": data.get("pubdate"),
                 "writer_id": data.get("writer_id", "")
             }
+
+            comment = mongo.db.comment
+            comments = comment.find({"root_idx": str(data.get("_id"))})
+
+            return render_template("view.html", comments=list(comments), result=result)
             # return render_template("view.html", result=result, page=page, search=search, keyword=keyword)
-            return render_template("view.html", result=result)
     return abort(404)  # 맞는 페이지가 없을때 404나 400 페이지 내보내기
 
 
@@ -299,7 +303,7 @@ def member_login():
             flash("회원정보가 없습니다.")
             return redirect(url_for("member_join"))
         else:
-            if check_password(data.get("pass"), password):
+            if check_password(data.get("pass1"), password):
             #if data.get("pass") == check_password(password):
                 session["email"] = email
                 session["name"] = data.get("name")
@@ -308,7 +312,7 @@ def member_login():
                 if next_url is not None:
                     return redirect(next_url)
                 else:
-                    return redirect(url_for("board.lists"))
+                    return redirect(url_for("board_lists"))
             else:
                 flash("비밀번호가 일치하지 않습니다.")
                 return redirect(url_for("member_login"))
@@ -316,7 +320,6 @@ def member_login():
 # 비밀번호 보안기능 추가
 def hash_password(password):
     return generate_password_hash(password)
-
 def check_password(hashed_password, user_password):
     return check_password_hash(hashed_password, user_password)
 
@@ -332,22 +335,22 @@ def comment_write():
         name = session.get("name")
         writer_id = session.get("id")
         root_idx = request.form.get("root_idx")
-        ccomment = request.form.get("comment")
+        comment = request.form.get("comment")
         current_utc_time = round(datetime.utcnow().timestamp() * 1000)
 
-        comment = mongo.db.comment
+        c_comment = mongo.db.comment
 
         post = {
-            "root_idx": root_idx,
+            "root_idx": str(root_idx),
             "writer_id": writer_id,
             "name": name,
-            "comment": ccomment,
+            "comment": comment,
             "pubdate": current_utc_time,
         }
 
         print(post)
-        x = comment.insert_one(post)
-        return redirect(url_for("board.board_view", idx=root_idx))
+        x = c_comment.insert_one(post)
+        return redirect(url_for("board_view", idx=root_idx))
     return abort(404)
 
 
