@@ -1,13 +1,16 @@
 import mongo as mongo
 from flask_pymongo import PyMongo
 from flask import Flask, request, render_template, abort, redirect, url_for, flash, session, jsonify
+from flask import Blueprint
 from datetime import datetime, timedelta
 from bson.objectid import ObjectId
 from functools import wraps
+from werkzeug.security import generate_password_hash, check_password_hash
 import time
-
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
+csrf = CSRFProtect(app)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/toy_practice"
 mongo = PyMongo(app)
 
@@ -181,6 +184,7 @@ def board_lists():
         keyword = keyword)
 
 
+# 게시글 수정 페이지 (Edit)
 @app.route("/edit", methods=["GET", "POST"])
 def board_edit():
     idx = request.args.get("idx")
@@ -218,6 +222,7 @@ def board_edit():
             return redirect(url_for("board_lists"))
 
 
+# 게시글 삭제 기능 추가 (Delete)
 @app.route("/delete")
 def board_delete():
     idx = request.args.get("idx")
@@ -234,10 +239,12 @@ def board_delete():
 # 회원가입 페이지 (Join)
 @app.route('/join', methods=['GET', 'POST'])
 def member_join():
-    if request.method == "POST" :
+    if request.method == "GET":
+        return render_template("join.html")
+    else:
         name = request.form.get("name", type=str)
         email = request.form.get("email", type=str)
-        pass1 = request.form.get("pass1", type=str)
+        pass1 = request.form.get("pass", type=str)
         pass2 = request.form.get("pass2", type=str)
 
         # 가입 시 빈칸이 있을 경우
@@ -262,16 +269,13 @@ def member_join():
         addmem = {
             'name': name,
             'email': email,
-            'pass1': pass1,
+            'pass1': hash_password(pass1),
             'joindate': current_time,
             'logintime': "",
             'logincount': 0
         }
         members.insert_one(addmem)
         return render_template('login.html')
-
-    else:
-        return render_template('join.html')
 
 
 # 로그인 페이지 (Login)
@@ -295,7 +299,8 @@ def member_login():
             flash("회원정보가 없습니다.")
             return redirect(url_for("member_join"))
         else:
-            if data.get("pass1") == password:
+            if check_password(data.get("pass"), password):
+            #if data.get("pass") == check_password(password):
                 session["email"] = email
                 session["name"] = data.get("name")
                 session["id"] = str(data.get("_id"))
@@ -303,11 +308,48 @@ def member_login():
                 if next_url is not None:
                     return redirect(next_url)
                 else:
-                    return redirect(url_for("board_lists"))
+                    return redirect(url_for("board.lists"))
             else:
                 flash("비밀번호가 일치하지 않습니다.")
                 return redirect(url_for("member_login"))
 
+# 비밀번호 보안기능 추가
+def hash_password(password):
+    return generate_password_hash(password)
+
+def check_password(hashed_password, user_password):
+    return check_password_hash(hashed_password, user_password)
+
+
+# 댓글기능 추가 (Comments)
+@app.route("/comment_write", methods=["POST"])
+@login_required
+def comment_write():
+    if session["id"] is None or session["id"] == "":
+        return redirect(url_for("member_login"))
+
+    if request.method == "POST":
+        name = session.get("name")
+        writer_id = session.get("id")
+        root_idx = request.form.get("root_idx")
+        ccomment = request.form.get("comment")
+        current_utc_time = round(datetime.utcnow().timestamp() * 1000)
+
+        comment = mongo.db.comment
+
+        post = {
+            "root_idx": root_idx,
+            "writer_id": writer_id,
+            "name": name,
+            "comment": ccomment,
+            "pubdate": current_utc_time,
+        }
+
+        print(post)
+        x = comment.insert_one(post)
+        return redirect(url_for("board.board_view", idx=root_idx))
+    return abort(404)
+
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5003, debug=True)
+    app.run('0.0.0.0', port=5006, debug=True)

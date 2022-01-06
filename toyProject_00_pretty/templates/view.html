@@ -25,7 +25,7 @@
                         <h1> {{result.title}}</h1>
                     </li>
                     <li class='list_desc'>
-                        <p> {{result.contents}}</p>
+                        <p> {% autoescape false %} {{result.contents}} {% endautoescape %}</p>
                     </li>
                     <li class='list_btn'>
                         <a href="{{url_for('board_lists', page=page, search=search, keyword=keyword)}}" class='btn'>글 목록</a>
@@ -37,5 +37,43 @@
                 </ul>
             </article>
         </section>
+
+
+
+<form id="commentForm" name="commentForm" action="{{url_for('comment_write')}}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <input type="hidden" name="root_idx" value="{{result.id}}">
+    <div>
+        <span><strong>댓글</strong></span> <span id="cCnt">{{comments.count()}}</span>
+        <table class="table">
+            <tr>
+                <td>
+                    <textarea rows="3" cols="110" id="comment" name="comment" placeholder="댓글을 입력하세요"></textarea>
+                    <br>
+                </td>
+                <td>
+                    <input type="submit" class="btn btn-success" style="height: 90px;" value="등록하기">
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+{% if comments.count() > 0 %}
+    {% for c in comments %}
+        <div>
+            <table class="table">
+                <tr>
+                    <td width="100"><h6>{{c.name}}</h6></td>
+                    <td>{{c.comment}}</td>
+                    <td class="text-right" width="200">{{c.pubdate|format_datetime}}</td>
+                </tr>
+            </table>
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+
     </body>
 </html>

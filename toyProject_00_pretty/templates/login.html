@@ -13,6 +13,9 @@
 </section>
 <section class="bottom">
         <form name="form" action="/login" method="POST">
+            <!-- CSRF 보안 관련 태그 추가, 소스보기를 하면 value가 암호화된 토큰으로 나옴-->
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
             <input type="email" name="email" placeholder="이메일 (아이디)">
             <input type="password" name="pass1" placeholder="비밀번호">
             <input type="submit" value="로그인하기">

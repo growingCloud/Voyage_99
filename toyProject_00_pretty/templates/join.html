@@ -19,6 +19,9 @@
 </section>
 <section class="bottom">
         <form name="form" action="/join" method="POST">
+            <!-- CSRF 보안 관련 태그 추가, 소스보기를 하면 value가 암호화된 토큰으로 나옴-->
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
             <h1>회원가입</h1>
             <input type="text" name="name" placeholder="이름">
             <input type="email" name="email" placeholder="이메일 (아이디)">
