@@ -70,7 +70,11 @@
                 {% for data in datas %}
                 <tr>
                     <td>{{loop.index + ((page - 1) * limit)}}</td>
-                    <td><a href="{{ url_for('board_view', idx=data._id) }}" onclick="countView('{{data._id}}')"></a>{{data.title}}</td>
+                    <td><a href="{{ url_for('board_view', idx=data._id) }}" onclick="countView('{{data._id}}')"></a>{{data.title}}
+                        {% if comments|length %}
+                        <span>[{{comments|length}}]</span>
+                        {% endif %}
+                    </td>
                     <td>{{data.name}}</td>
                     <td>{{data.pubdate|format_datetime}}</td>
                     <td>{{data.view}}</td>
