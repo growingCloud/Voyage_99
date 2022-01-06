@@ -52,6 +52,8 @@
         <article>
                 <!-- 제일 끝에 enctype="multipart/form-data" 추가됨! -->
             <form id='write_form' name="form" method="POST" action="/write" enctype="multipart/form-data">
+                <!-- CSRF 보안 관련 태그 추가, 소스보기를 하면 value가 암호화된 토큰으로 나옴-->
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                 <ul>
                     <li>
                         <p>작성자</p>
@@ -75,7 +77,4 @@
     </section>
 
     </body>
-<style>
-
-</style>
 </html>

@@ -89,7 +89,6 @@ def board_write():
             "pubdate": current_utc_time,
         }
 
-
         print(post)
         idx = board.insert_one(post)
 
@@ -248,7 +247,7 @@ def member_join():
     else:
         name = request.form.get("name", type=str)
         email = request.form.get("email", type=str)
-        pass1 = request.form.get("pass", type=str)
+        pass1 = request.form.get("pass1", type=str)
         pass2 = request.form.get("pass2", type=str)
 
         # 가입 시 빈칸이 있을 경우
@@ -257,9 +256,9 @@ def member_join():
             return render_template('join.html')
 
         # 비밀번호 확인과 일치하지 않을 경우
-        if pass1 != pass2:
-            flash("비밀번호가 일치하지 않습니다.")
-            return render_template('join.html')
+        #if pass1 != pass2:
+         #   flash("비밀번호가 일치하지 않습니다.")
+         #   return render_template('join.html')
 
         # 이메일(아이디) 중복 검사
         members = mongo.db.members
@@ -304,7 +303,7 @@ def member_login():
             return redirect(url_for("member_join"))
         else:
             if check_password(data.get("pass1"), password):
-            #if data.get("pass") == check_password(password):
+                # if data.get("pass") == check_password(password):
                 session["email"] = email
                 session["name"] = data.get("name")
                 session["id"] = str(data.get("_id"))
@@ -355,4 +354,4 @@ def comment_write():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5006, debug=True)
+    app.run('0.0.0.0', port=5007, debug=True)
