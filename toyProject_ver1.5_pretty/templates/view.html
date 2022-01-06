@@ -20,7 +20,7 @@
                 <ul>
                     <li class='list_name'>
                         <p>
-                            <strong>{{result.name}}</strong>
+                            <strong>{{result.name}} </strong>
                             항해사님의 결심</p>
                     </li>
                     <li class='list_date'>
@@ -29,7 +29,7 @@
                     </li>
                     <li class='list_title'>
                         <h1>
-                            {{result.title}}</h1>
+                            {{result.title}} </h1>
                     </li>
                     <li class='list_desc'>
                         <p>
@@ -45,7 +45,6 @@
                             </span>
                             <span id="cCnt">{{comments|length}}</span>
                         </p>
-                        <!-- 댓글 기능 추가 : 테이블 태그 미안 ... -->
                         {% if comments | length > 0 %}
                             {% for c in comments %}
                                 <ul class='commnet_list'>

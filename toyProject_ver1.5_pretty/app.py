@@ -182,7 +182,7 @@ def board_lists():
         keyword = keyword)
 
 
-# 게시글 수정 페이지 (Edit)
+# 게시글 수정 페이지 (Update)
 @app.route("/edit", methods=["GET", "POST"])
 def board_edit():
     idx = request.args.get("idx")
@@ -311,9 +311,13 @@ def member_login():
                 flash("비밀번호가 일치하지 않습니다.")
                 return redirect(url_for("member_login"))
 
-# 비밀번호 보안기능 추가
+
+# 비밀번호 보안기능 (암호화)  추가
 def hash_password(password):
     return generate_password_hash(password)
+
+
+# 비밀번호 보안기능 (복호화)  추가
 def check_password(hashed_password, user_password):
     return check_password_hash(hashed_password, user_password)
 
@@ -343,16 +347,22 @@ def comment_write():
         }
 
         print(post)
-        x = c_comment.insert_one(post)
+        c_idx = c_comment.insert_one(post)
         return redirect(url_for("board_view", idx=root_idx))
     return abort(404)
 
 
-# 댓글삭제 기능 추가 (Comments_Delete)
+# 댓글삭제 기능 추가 (Comments_Delete) >> 작동 안함
 @app.route("/comment_delete")
 def comment_delete():
+    idx = request.args.get("idx")
     comment = mongo.db.comment
-    root_idx = comment.find_one("root_idx")
+    data = comment.find_one({"_id": ObjectId(idx)})
+    print(data)
+
+    if data.get("writer_id") == session.get("id"):
+        comment.delete_one({"_id": ObjectId(idx)})
+        flash("삭제 되었습니다.")
 
     data = comment.find({"writer_id": session["id"]})
     my_id = str(data)
@@ -361,10 +371,9 @@ def comment_delete():
         comment.delete_one({"writer_id": session["id"]})
         flash("삭제 되었습니다.")
     else:
-        return redirect(url_for("board_view", idx=root_idx))
-    return redirect(url_for("board_view", idx=root_idx))
-
+        return redirect(url_for("board_view" + "idx?=" + idx))
+    return redirect(url_for("board_view" + "idx?=" + idx))
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5012, debug=True)
+    app.run('0.0.0.0', port=5008, debug=True)
