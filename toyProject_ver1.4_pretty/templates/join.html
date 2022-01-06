@@ -1,0 +1,54 @@
+<!-- flash를 임포트하여 쓴 경고문 메세지, messages 변수에 받음 -->
+<!-- messages 변수는 list 형태 이므로, 인덱싱을 해서 제일 마지막 메세지를 불러옴 -->
+{% with messages = get_flashed_messages()%}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+{% endwith %}
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="https://hanghae99.spartacodingclub.kr/static/images/favicon.ico">
+    <link rel="stylesheet" href="../static/reset.css">
+    <link rel="stylesheet" href="../static/join.css">
+    <title>항해99 항해사들의 결심일지</title>
+</head>
+<body>
+    <section class="top">
+        <h1 style="color:white;padding: 30px;font-size: 30px;">항해 29조 : 모든 항해사들의 성공을 응원하는 결심일지</h1>
+            <img src='../static/킹갓구름님과킹갓감자.png' alt="">
+    </section>
+<section class="bottom">
+        <form name="form" action="/join" method="POST">
+            <!-- CSRF 보안 관련 태그 추가, 소스보기를 하면 value가 암호화된 토큰으로 나옴-->
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+            <h1>회원가입</h1>
+            <input type="text" name="name" placeholder="이름">
+            <input type="email" name="email" placeholder="이메일 (아이디)">
+            <input type="password" name="pass1" placeholder="비밀번호">
+            <input type="password" name="pass2" placeholder="비밀번호 확인">
+            <input type="submit" value="가입하기">
+        </form>
+</section>
+<script>
+    console.log(123123132)
+    const joinForm = document.querySelector('form[action="/join"]');
+    joinForm.addEventListener('submit',(e)=>{
+        const name = document.querySelector('input[name=name]').value;
+        const email = document.querySelector('input[name=email]').value;
+        const pass1 = document.querySelector('input[name=pass1]').value;
+        const pass2 = document.querySelector('input[name=pass2]').value;
+        if(name=='' || email=='' || pass1 =='' || pass2 ==''){
+            e.preventDefault();
+            alert('빈칸을 입력해 주세요')
+            return false;
+        }
+        if(pass1 != pass2){
+            e.preventDefault();
+            alert('비밀번호가 일치하지 않습니다.')
+            return false;
+        }
+    })
+</script>
+</body>

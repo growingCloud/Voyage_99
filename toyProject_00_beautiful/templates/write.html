@@ -1,0 +1,49 @@
+{% with messages = get_flashed_messages()%}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+{% endwith %}
+
+<html>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="https://hanghae99.spartacodingclub.kr/static/images/favicon.ico">
+    <link rel="stylesheet" href="../static/reset.css">
+    <link rel="stylesheet" href="../static/write.css">
+    <title>항해99 항해사들의 결심일지</title>
+</head>
+    <body>
+    <section class="top">
+        <img src='../static/킹갓구름님과킹갓감자.png' alt="">
+    </section>
+    <section class="bottom">
+        <article>
+            <form name="form" method="POST" action="/write">
+                <ul>
+                    <li>
+                        <p>작성자</p>
+                        <input type="text" name="name" value="{{session['name']}}" readonly>
+                    </li>
+                    <li>
+                        <p>제목</p>
+                        <input type="text" name="title">
+                    </li>
+                    <li>
+                        <p>내용</p>
+                        <textarea name="contents"></textarea>
+                    </li>
+                    <li>
+                        <label class="btn" for="write">결심하기</label>
+                        <input type="submit" id="write" style="display:none;">
+                    </li>
+                </ul>
+            </form>
+        </article>
+    </section>
+
+    </body>
+<style>
+
+</style>
+</html>

@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="https://hanghae99.spartacodingclub.kr/static/images/favicon.ico">
+        <link rel="stylesheet" href="../static/reset.css">
+        <link rel="stylesheet" href="../static/view.css">
+        <script src="https://kit.fontawesome.com/edd2b79d64.js" crossorigin="anonymous"></script>
+        <title>항해99 항해사들의 결심일지</title>
+
+    </head>
+    <body>
+        <section class="top">
+            <h1 style="color:white;padding: 30px;font-size: 30px;">항해 29조 : 모든 항해사들의 성공을 응원하는 결심일지</h1>
+            <img src='../static/킹갓구름님과킹갓감자.png' alt="">
+        </section>
+        <section class="bottom">
+            <article class='view_wrap'>
+                <ul>
+                    <li class='list_name'>
+                        <p>
+                            <strong>{{result.name}} </strong>
+                            항해사님의 결심</p>
+                    </li>
+                    <li class='list_date'>
+                        작성일 :
+                        {{result.pubdate|format_datetime}}
+                    </li>
+                    <li class='list_title'>
+                        <h1>
+                            {{result.title}}
+                        </h1>
+                    </li>
+                    <li class='list_desc'>
+                        <p>
+                            {% autoescape false %}
+                                {{result.contents}}
+                            {% endautoescape %}
+                        </p>
+                    </li>
+                    <li class="comment">
+                        <p class='comment_count'>
+                            <span>
+                                <strong>댓글</strong>
+                            </span>
+                            <span id="cCnt">{{comments|length}}</span>
+                        </p>
+                        {% if comments | length > 0 %}
+                            {% for c in comments %}
+                                <ul class='commnet_list'>
+                                    <li>
+                                        <div class="text_box">
+                                            <h1>{{c.name}}</h1>
+                                            <p>{{c.comment}}</p>
+                                        </div>
+                                        <p class="text-date">
+                                            {{c.pubdate|format_datetime}}
+                                            {% if session["id"] == c.writer_id %}
+                                            <a class='comment_icon' href="{{url_for('comment_delete')}}" >
+                                                <i class="fas fa-times"></i>
+                                            </a>
+                                            {% endif %}
+                                        </p>
+                                    </li>
+                                </ul>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form
+                            id="commentForm"
+                            name="commentForm"
+                            action="{{url_for('comment_write')}}"
+                            method="POST">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                            <input type="hidden" name="root_idx" value="{{result.id}}">
+                            <div class="commnet_add">
+                                <textarea
+                                    rows="3"
+                                    cols="110"
+                                    id="comment"
+                                    name="comment"
+                                    placeholder="댓글을 입력해 주세요"></textarea>
+                                <input type="submit" class="btn btn-comment" value="댓글 등록하기">
+                            </div>
+                        </form>
+                        <!-- 댓글 기능 추가 끝 -->
+                    </li>
+                    <li class='list_btn'>
+                        <a
+                            href="{{url_for('board_lists', page=page, search=search, keyword=keyword)}}"
+                            class='btn'>글 목록</a>
+                        {% if session["id"] == result.writer_id %}
+                            <a href="{{url_for('board_delete', idx=result.id)}}" class='btn'>글삭제</a>
+                            <a href="{{url_for('board_edit', idx=result.id)}}" class='btn'>글수정</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </article>
+        </section>
+
+    </body>
+</html>
