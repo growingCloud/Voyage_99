@@ -122,7 +122,8 @@ def board_view():
                 "writer_id": data.get("writer_id", "")
             }
 
-            comments = db.comment.find({"root_idx": str(data.get("_id"))})
+            comments = db.c_comment.find({"root_idx": str(data.get("id"))})
+            print(comments)
 
             return render_template("view.html", comments=list(comments), result=result)
             # return render_template("view.html", result=result, page=page, search=search, keyword=keyword)
@@ -336,8 +337,9 @@ def comment_write():
             "pubdate": current_utc_time,
         }
 
-        print(post)
-        idx = db.c_comment.insert_one(post)
+        db.c_comment.insert_one(post)
+
+
         return redirect(url_for("board_view", idx=root_idx))
     return abort(404)
 
@@ -346,18 +348,18 @@ def comment_write():
 @app.route("/comment_delete")
 def comment_delete():
     idx = request.args.get("idx")
-    data = db.comment.find_one({"_id": ObjectId(idx)})
+    data = db.c_comment.find_one({"_id": ObjectId(idx)})
     print(data)
 
     if data.get("writer_id") == session.get("id"):
-        db.comment.delete_one({"_id": ObjectId(idx)})
+        db.c_comment.delete_one({"_id": ObjectId(idx)})
         flash("삭제 되었습니다.")
 
-    data = db.comment.find({"writer_id": session["id"]})
+    data = db.c_comment.find({"writer_id": session["id"]})
     my_id = str(data)
 
     if my_id == session["id"]:
-        db.comment.delete_one({"writer_id": session["id"]})
+        db.c_comment.delete_one({"writer_id": session["id"]})
         flash("삭제 되었습니다.")
     else:
         return redirect(url_for("board_view" + "idx?=" + idx))

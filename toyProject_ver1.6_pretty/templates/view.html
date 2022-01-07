@@ -44,15 +44,15 @@
                             <span>
                                 <strong>댓글</strong>
                             </span>
-                            <span id="cCnt">{{comments|length}}</span>
+                            <span id="cCnt">{{c_comments|length}}</span>
                         </p>
-                        {% if comments | length > 0 %}
-                            {% for c in comments %}
-                                <ul class='commnet_list'>
+                        {% if c_comments|length > 0 %}
+                            {% for c in c_comments %}
+                                <ul class='comment_list'>
                                     <li>
                                         <div class="text_box">
                                             <h1>{{c.name}}</h1>
-                                            <p>{{c.comment}}</p>
+                                            <p>{{c.c_comment}}</p>
                                         </div>
                                         <p class="text-date">
                                             {{c.pubdate|format_datetime}}
@@ -74,7 +74,7 @@
                             method="POST">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                             <input type="hidden" name="root_idx" value="{{result.id}}">
-                            <div class="commnet_add">
+                            <div class="comment_add">
                                 <textarea
                                     rows="3"
                                     cols="110"
