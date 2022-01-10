@@ -11,39 +11,115 @@
     <!-- SUMMER NOTE : include summernote css/js -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <style>
+        .panel-heading.note-toolbar>* {
+            display: none;
+        }
+        .panel-heading.note-toolbar{
+            overflow:hidden;
+        }
+        .note-btn-group.btn-group.note-insert{
+            display:block;
+        }
+        .note-btn-group.btn-group.note-insert>*:nth-child(odd){
+            display:none;
+        }
+        .note-icon-picture::after{
+            content:"이미지";
+            display:inline;
+            margin-left:10px;
+        }
+    </style>
     <script>
         $(document).ready(function() {
-          $('#summernote').summernote({
+          $('#summernote_left').summernote({
                 height: '100%',
-                width: '70%',
+                width: '20%',
                 lang : 'ko-KR',
                 popover: {
                     image: [],
                     link: [],
                     air: []
-                }
+                },
+              callbacks: {
+                    onImageUpload: function(image) {
+                        for(let i = 0; i < image.length; i++)
+                            uploadImage(image[i]);
+                    }
+              }
           })
         })
+
+        $(document).ready(function() {
+          $('#summernote_right').summernote({
+                height: '100%',
+                width: '20%',
+                lang : 'ko-KR',
+                popover: {
+                    image: [],
+                    link: [],
+                    air: []
+                },
+              callbacks: {
+                    onImageUpload: function(image) {
+                        for(let i = 0; i < image.length; i++)
+                            uploadImage(image[i]);
+                    }
+              }
+          })
+        })
+
+        function uploadImage(image) {
+            let data = new FormData();
+            data.append("image", image)
+            $.ajax({
+                url: "{{url_for('upload_image')}}",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: data,
+                type: "post",
+                success: function(url) {
+                    let image = $("<img>").attr("src", url).css('max-width', "900px");
+                    $("#summernote").summernote("insertNode", image[0]);
+                },
+                error: function (data) {
+                    console.log(data);
+                    alert(data);
+                }
+            });
+        }
     </script>
 
 
-    <title>골라보세요 벨런스게임!</title>
+    <title>골라보세요 벨런스게임! : 수정하기</title>
 </head>
     <body>
         <article>
-            <form id='write_form' name="form" method="POST" action="/write" >
+            <form id='edit_form' name="form" method="POST" action="/post" >
                 <ul>
                     <li>
-                        <p>작성자</p>
-                        <input type="text" name="name">
+                        <p>작성자
+                        <input type="text" size="48px" name="user_id" readonly> </p>
+
                     </li>
                     <li>
-                        <p>제목</p>
-                        <input type="text" name="title">
+                        <p>첫번째 이미지 제목
+                        <input type="text" size="48px" name="img_title_left"> </p>
                     </li>
                     <li class='summer'>
-                        <p>내용</p>
-                        <textarea name="contents" id="summernote"></textarea>
+                        <p> <textarea name="img_url_left" id="summernote_left"></textarea> 첫번째 이미지 첨부 </p>
+                    <li>
+                        <p>두번째 이미지 제목
+                        <input type="text" size="48px" name="img_title_right"> </p>
+                    </li>
+                    <li class='summer'>
+                        <p> <textarea name="img_url_right" id="summernote_right"></textarea> 두번째 이미지 첨부 </p>
+                    </li>
+                    </li>
+                    <li class='summer'>
+                        <p> 자유롭게 설명을 적어주세요! </p>
+                        <textarea name="contents"></textarea>
                     </li>
                     <li>
                         <label class="btn" for="write">게임 만들기</label>

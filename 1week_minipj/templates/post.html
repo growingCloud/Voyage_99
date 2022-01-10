@@ -25,16 +25,35 @@
             display:none;
         }
         .note-icon-picture::after{
-            content:"ddddddddddddddd";
+            content:"이미지";
             display:inline;
             margin-left:10px;
         }
     </style>
     <script>
         $(document).ready(function() {
-          $('#summernote').summernote({
+          $('#summernote_left').summernote({
                 height: '100%',
-                width: '70%',
+                width: '20%',
+                lang : 'ko-KR',
+                popover: {
+                    image: [],
+                    link: [],
+                    air: []
+                },
+              callbacks: {
+                    onImageUpload: function(image) {
+                        for(let i = 0; i < image.length; i++)
+                            uploadImage(image[i]);
+                    }
+              }
+          })
+        })
+
+        $(document).ready(function() {
+          $('#summernote_right').summernote({
+                height: '100%',
+                width: '20%',
                 lang : 'ko-KR',
                 popover: {
                     image: [],
@@ -73,25 +92,34 @@
     </script>
 
 
-    <title>골라보세요 벨런스게임!</title>
+    <title>골라보세요 벨런스게임! : 게임만들기</title>
 </head>
     <body>
         <article>
-            <form id='write_form' name="form" method="POST" action="/post" >
+            <form id='create_form' name="form" method="POST" action="/post" >
                 <ul>
                     <li>
-                        <p>작성자</p>
-                        <input type="text" name="name">
+                        <p>작성자
+                        <input type="text" size="48px" name="user_id" readonly> </p>
+
                     </li>
                     <li>
-                        <p>이미지 제목 (Left)</p>
-                        <input type="text" name="imgtitle_L">
-                        <p>이미지 제목 (Right)</p>
-                        <input type="text" name="imgtitle_R">
+                        <p>첫번째 이미지 제목
+                        <input type="text" size="48px" name="img_title_left"> </p>
                     </li>
                     <li class='summer'>
-                        <p>자유롭게 설명을 적어주세요!</p>
-                        <textarea name="contents" id="summernote"></textarea>
+                        <p> <textarea name="img_url_left" id="summernote_left"></textarea> 첫번째 이미지 첨부 </p>
+                    <li>
+                        <p>두번째 이미지 제목
+                        <input type="text" size="48px" name="img_title_right"> </p>
+                    </li>
+                    <li class='summer'>
+                        <p> <textarea name="img_url_right" id="summernote_right"></textarea> 두번째 이미지 첨부 </p>
+                    </li>
+                    </li>
+                    <li class='summer'>
+                        <p> 자유롭게 설명을 적어주세요! </p>
+                        <textarea name="contents"></textarea>
                     </li>
                     <li>
                         <label class="btn" for="write">게임 만들기</label>

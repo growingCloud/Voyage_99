@@ -54,7 +54,7 @@ def home():
 def game_create():
 
     if request.method == "POST":
-        name = request.form.get("name")
+        user_id = request.form.get("user_id")
         img_url_left = request.form.get("img_url_left"),
         img_url_right = request.form.get("img_url_right"),
         img_title_left = request.form.get("img_title_left"),
@@ -62,7 +62,7 @@ def game_create():
         contents = request.form.get("contents")
 
         post = {
-            "name": name,
+            "user_id": user_id,
             "img_title_left": img_title_left,
             "img_title_right": img_title_right,
             "img_url_left": img_url_left,
@@ -152,4 +152,4 @@ def board_view():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5001, debug=True)
+    app.run('0.0.0.0', port=5003, debug=True)
