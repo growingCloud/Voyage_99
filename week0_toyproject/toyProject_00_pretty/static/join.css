@@ -1,0 +1,63 @@
+.top {
+  width: 100%;
+  height: 27%;
+  background: #1f1f1f;
+  position: relative;
+}
+.bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 73%;
+  position: relative;
+}
+img {
+  width: 100%;
+  position: absolute;
+  bottom: -20px;
+}
+.bottom form {
+  width: 15%;
+  text-align: center;
+  border-radius: 15px;
+  margin-top: -50px;
+}
+.bottom form > * {
+  display: block;
+  width: 100%;
+}
+.bottom form > * {
+  padding: 20px;
+  font-size: 20px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  box-shadow: rgba(15, 15, 15, 0.2) 0px 0px 0px 1px,
+    rgba(15, 15, 15, 0.1) 0px 2px 4px;
+  border: none;
+  font-family: "Gamja Flower", cursive;
+}
+
+.bottom form > h1 {
+  border: none;
+  box-shadow: none;
+  font-size: 30px;
+}
+.bottom form > input:last-child {
+  cursor: pointer;
+  background: rgba(229, 250, 230, 0.99);
+  transition: all 0.4s;
+}
+.bottom form > input:last-child:hover {
+  background: #d3fcd4fc;
+}
+.bottom form > a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  background: rgba(176, 224, 230, 0.4);
+  transition: all 0.4s;
+}
+.bottom form > a:hover {
+  background: rgba(176, 224, 230, 0.8);
+}

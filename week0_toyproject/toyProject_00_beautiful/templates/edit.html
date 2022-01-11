@@ -1,0 +1,63 @@
+<!-- edit.html -->
+
+<html>
+    <head>
+        <link rel="shortcut icon" type="image/x-icon" href="https://hanghae99.spartacodingclub.kr/static/images/favicon.ico">
+        <link rel="stylesheet" href="../static/reset.css">
+        <link rel="stylesheet" href="../static/edit.css">
+        <title>항해99 항해사들의 결심일지</title>
+    </head>
+    <body>
+        <section class="top">
+            <img src='../static/킹갓구름님과킹갓감자.png' alt="">
+        </section>
+        <section class="bottom">
+            <article>
+                <form name="form" method="POST" action="/write">
+                    <ul>
+                        <li>
+                            <p>작성자</p>
+                            <input type="text" id='name' name="name" value="{{session.get('name')}}" readonly>
+                        </li>
+                        <li>
+                            <p>제목</p>
+                            <input type="text" name="title" value={{data.title}}>
+                        </li>
+                        <li>
+                            <p>내용</p>
+                            <textarea name="contents">{{data.contents}}</textarea>
+                        </li>
+                        <li>
+                            <label class="btn" for="edit">수정하기</label>
+                            <input type="submit" id='edit'  value="수정하기" style='display:none;'>
+                        </li>
+                    </ul>
+                </form>
+            </article>
+        </section>
+        <table>
+            <form name="form" method="POST" action="/edit?idx={{data._id}}">
+            <thead>
+                <caption>글수정</caption>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>작성자</td>
+                    <td><input type="text" name="name" value="{{session.get('name')}}" readonly></td>
+                </tr>
+                <tr>
+                    <td>제목</td>
+                    <td><input type="text" name="title" value={{data.title}}></td>
+                </tr>
+                <tr>
+                    <td>내용</td>
+                    <td><textarea name="contents">{{data.contents}}</textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="수정하기"></td>
+                </tr>
+            </tbody>
+            </form>
+        </table>
+    </body>
+</html>

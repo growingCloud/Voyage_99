@@ -1,0 +1,31 @@
+{% with messages = get_flashed_messages()%}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+{% endwith %}
+
+<html>
+    <body>
+        <table>
+            <form name="form" method="POST" action="/write">
+            <tr>
+                <td>작성자</td>
+                <td><input type="text" name="name" value="{{session['name']}}" readonly></td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td><input type="text" name="title"></td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td><textarea name="contents"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit"></td>
+            </tr>
+            </form>
+        </table>
+    </body>
+</html>
