@@ -9,5 +9,18 @@
 # 입력 >> "A man, a plan, a canal: Panama"
 # 출력 >> true
 # 예제 2.
-# 입력 >> "race a car
+# 입력 >> "race a car"
 # 출력 >> false
+
+import re
+
+def isPalindrome(s: str) -> bool :
+    s = s.lower()
+    # 정규식으로 불필요한 문자 필터링
+    s = re.sub('[^a-z@0-9]', '', s)
+
+    return s == s[::-1] # 슬라이싱
+
+
+print(isPalindrome("A man, a plan, a canal: Panama"))
+print(isPalindrome("race a car"))
