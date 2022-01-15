@@ -8,3 +8,22 @@
 # 입력 >> paragraph = "Bob hit a ball, the hit BALL flew far after it was hit."
 #        banned = ["hit"]
 # 출력 >> "ball"
+
+from typing import List
+import collections
+import re
+
+def mostCommonWord(paragraph: str, banned: List[str]) :
+    words = [word for word in re.sub(r'^\w', ' ', paragraph)
+        .lower().split()
+             if word not in banned]
+
+    counts = collections.Counter(words)
+    # 가장 흔하게 등장하는 단어의 첫번째 인덱스 리턴
+    return counts.most_common(1)[0][0]
+
+
+paragraph = "Bob hit a ball, the hit BALL flew far after it was hit."
+banned = ["hit"]
+
+print(mostCommonWord(paragraph, banned))

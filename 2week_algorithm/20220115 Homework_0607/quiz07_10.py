@@ -6,3 +6,24 @@
 # 예제 1.
 # 입력 >> [1, 4, 3, 2]
 # 출력 >> 4
+
+li = [1, 4, 3, 2]
+
+
+def pairSum(numbers):
+    numbers = list(numbers)
+    numbers.sort()
+    pair_li = []
+    sums = 0
+
+    for n in numbers:
+        pair_li.append(n)
+        if len(pair_li) == 2:
+            sums += min(pair_li)
+            pair_li = []
+
+    return sums
+
+
+print(pairSum(li))
+

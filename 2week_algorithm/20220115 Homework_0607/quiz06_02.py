@@ -14,10 +14,6 @@
 from typing import List
 # 이거 왜 안돼 ....?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!!?!?
 
-# 2) 파이썬 함수 사용
-def reverseString2(s: List[str]) -> None :
-    s.reverse()
-
 # 1) 투포인터 스왑
 def reverseString(s: List[str]) -> None :
     left, right = 0, len(s) -1
@@ -27,7 +23,20 @@ def reverseString(s: List[str]) -> None :
         right -= 1
 
 
+# 2) 파이썬 함수 사용
+def reverseString2(s: List[str]) -> None:
+    s.reverse()
+    return s
+
+
+# 3) 식 다 똑같은데 왜 이거만 돼 ...?
+def reverseString3(s: List[str]) -> None:
+    s.reverse()
+    return s
+
+
 question = ["h", "e", "l", "l", "o"]
 
 print(reverseString(question))
 print(reverseString2(question))
+print(reverseString3(question))
