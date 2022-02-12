@@ -1,8 +1,11 @@
 // 기본적인 웹서버 코드 작성 과정 
 
 const express = require("express");
+const connect = require("./schemas");
 const app = express();
-const port = 3001;
+const port = 3002;
+
+connect();
 
 const goodsRouter = require("./routes/goods.js");
 
@@ -21,6 +24,8 @@ const requestMiddleware = (req, res, next) => {
 //         next(); // 다음 미들웨어? 라우터?로 넘기기 위한 필수 항목 (없으면 무한로딩)
 //     }
 // });
+
+app.use(express.json());
 app.use(requestMiddleware);
 
 app.use("/api", goodsRouter);
