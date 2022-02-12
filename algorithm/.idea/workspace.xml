@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ad36977c-9545-45f3-b906-3eb723193826" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220117 Homework_08/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220117 Homework_08/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220117 Homework_08/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220117 Homework_08/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220117 Homework_08/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220117 Homework_08/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220117 Homework_08/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220118 Homework_09/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220118 Homework_09/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220118 Homework_09/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220118 Homework_09/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220118 Homework_09/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220118 Homework_09/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220118 Homework_09/quiz09_20.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220118 Homework_09/quiz09_21.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220118 Homework_09/quiz09_22.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220118 Homework_09/quiz09_23.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220118 Homework_09/quiz09_24.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220118 Homework_09/quiz09_25.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220119 Homework_11/quiz11_28.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220119 Homework_11/quiz11_29.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220119 Homework_11/quiz11_30.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220119 Homework_11/quiz11_31.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220121 Homework_12/111111.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220121 Homework_12/quiz12_32.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220121 Homework_12/quiz12_33.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220121 Homework_12/quiz12_34.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220121 Homework_12/quiz12_35.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220121 Homework_12/quiz12_36.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220121 Homework_12/quiz12_37.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220121 Homework_12/quiz12_38.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220121 Homework_12/quiz12_39.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220125 Homework_14/quiz14_42.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220125 Homework_14/quiz14_43.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220125 Homework_14/quiz14_44.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220125 Homework_14/quiz14_45.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220125 Homework_14/quiz14_46.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220125 Homework_14/quiz14_47.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220125 Homework_14/quiz14_48.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220125 Homework_14/quiz14_49.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220125 Homework_14/quiz14_50.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220125 Homework_14/quiz14_51.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220125 Homework_14/quiz14_52.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220125 Homework_14/quiz14_53.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220125 Homework_14/quiz14_54.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220129 Homework_17/quiz17_58.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220129 Homework_17/quiz17_59.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220129 Homework_17/quiz17_60.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220129 Homework_17/quiz17_61.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2week_algorithm/20220129 Homework_17/quiz17_62.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1week_miniproject/ver.1" beforeDir="false" afterPath="$PROJECT_DIR$/../1week_miniproject/ver.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2week_algorithm/.idea/2week_algorithm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../2week_algorithm/.idea/2week_algorithm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2week_algorithm/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../2week_algorithm/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2week_algorithm/20220114_Day01/chapter06_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2week_algorithm/20220114_Day01/regex.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2week_algorithm/20220114_Day01/string.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2week_algorithm/20220117 Homework_08/quiz08_15.py" beforeDir="false" afterPath="$PROJECT_DIR$/../2week_algorithm/20220117 Homework_08/quiz08_15.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="23p4FpfAkipysFdQnSsZT2y6mzi" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/stack_queue" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.quiz09_20">
+    <configuration name="prac" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="algorithm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/stack_queue" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/stack_queue/prac.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="quiz09_20" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="algorithm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/stack_queue" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/stack_queue/quiz09_20.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.quiz09_20" />
+        <item itemvalue="Python.prac" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="ad36977c-9545-45f3-b906-3eb723193826" name="변경" comment="" />
+      <created>1642417594947</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1642417594947</updated>
+      <workItem from="1642417597030" duration="3330000" />
+      <workItem from="1642422741925" duration="1500000" />
+      <workItem from="1643432635728" duration="1000" />
+      <workItem from="1643432639992" duration="10000" />
+      <workItem from="1643432653633" duration="8000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/algorithm$quiz09_20.coverage" NAME="quiz09_20 커버리지 결과" MODIFIED="1642420478295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/stack_queue" />
+    <SUITE FILE_PATH="coverage/algorithm$prac.coverage" NAME="prac 커버리지 결과" MODIFIED="1642419175786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/stack_queue" />
+  </component>
+</project>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="43672055-1b0e-4742-9256-e45fac93fb2b" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/../20220118 Homework_09/quiz09_20.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20220118 Homework_09/quiz09_21.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20220118 Homework_09/quiz09_22.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20220118 Homework_09/quiz09_23.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20220118 Homework_09/quiz09_24.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20220118 Homework_09/quiz09_25.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../algorithm/stack_queue/prac.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../algorithm/stack_queue/structures.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../1week_miniproject/ver.1" beforeDir="false" afterPath="$PROJECT_DIR$/../../1week_miniproject/ver.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20220114_Day01/chapter06_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20220114_Day01/regex.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20220114_Day01/string.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz08_15.py" beforeDir="false" afterPath="$PROJECT_DIR$/quiz08_15.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="23p8BUvJaDFAd7mjE9E60o3vflf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="43672055-1b0e-4742-9256-e45fac93fb2b" name="변경" comment="" />
+      <created>1642419533002</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1642419533002</updated>
+      <workItem from="1642419534126" duration="25000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
