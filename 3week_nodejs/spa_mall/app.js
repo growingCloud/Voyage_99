@@ -8,6 +8,7 @@ const port = 3002;
 connect();
 
 const goodsRouter = require("./routes/goods.js");
+const cartsRouter = require("./routes/carts.js");
 
 const requestMiddleware = (req, res, next) => {
     console.log("Request URL : ", req.originalUrl, " - ", new Date());
@@ -28,7 +29,7 @@ const requestMiddleware = (req, res, next) => {
 app.use(express.json());
 app.use(requestMiddleware);
 
-app.use("/api", goodsRouter);
+app.use("/api", [goodsRouter, cartsRouter]);
 
 // get : 
 app.get('/', (req, res) => {

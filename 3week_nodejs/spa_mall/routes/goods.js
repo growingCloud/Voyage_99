@@ -1,5 +1,6 @@
 const express = require("express");
 const Goods = require("../schemas/goods");
+const Carts = require("../schemas/cart");
 const router = express.Router();
 
 // "/" = "/api/"
@@ -29,6 +30,45 @@ router.get("/goods/:goodsId", async(req, res) => {
     // const [datail] = goods.filter((item) => item.goodsId === Number(goodsId));
 
     res.json({ detail });
+});
+
+router.post("/goods/:goodsId/cart", async(req, res) => {
+    const { goodsId } = req.params;
+    const { quantity } = req.body;
+
+    const existsCarts = await Carts.find({ goodsId: Number(goodsId) });
+    if (existsCarts.length) {
+        return res.status(400).json({ success: false, errorMessage: "이미 장바구니에 들어있는 상품입니다." });
+    }
+
+    const createdCarts = await Carts.create({ goodsId: Number(goodsId), quantity });
+    res.json({ success: true });
+});
+
+router.delete("/goods/:goodsId/cart", async(req, res) => {
+    const { goodsId } = req.params;
+
+    const existsCarts = await Carts.find({ goodsId: Number(goodsId) });
+    if (existsCarts.length) {
+        await Carts.deleteOne({ goodsId: Number(goodsId) });
+    }
+
+    res.json({ success: true });
+});
+
+router.put("/goods/:goodsId/cart", async(req, res) => {
+    const { goodsId } = req.params;
+    const { quantity } = req.body;
+
+    const existsCarts = await Carts.find({ goodsId: Number(goodsId) });
+    if (!existsCarts.length) {
+        return res.status(400).json({ success: false, errorMessage: "장바구니에 해당 상품이 없습니다." });
+    }
+    if (quantity < 1) {
+        return res.status(400).json({ success: false, errorMessage: "해당 수량 이하로 요청할 수 없습니다" });
+    }
+    await Carts.updateOne({ goodsId: Number(goodsId) }, { $set: { quantity } });
+    res.json({ success: true });
 });
 
 
